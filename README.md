@@ -1,6 +1,8 @@
 # jsBuddy
 Provides `modelUpdate()` helper function to easily update an **ARRAY** or **OBJECT** without mutating the existing array/object and easily update deep nested objects without having to spread the objects at each level.
 
+`npm i jsbuddy -S`
+
 ## modelUpdate
 `modelUpdate(source, model, variables)`
 **source** is the existing object
