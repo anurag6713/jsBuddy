@@ -1,6 +1,6 @@
 {
   "name": "jsbuddy",
-  "version": "1.0.0",
+  "version": "1.0.1o",
   "description": "Javascript immutability helper function",
   "main": "index.js",
   "scripts": {
