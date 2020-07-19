@@ -5,6 +5,7 @@ Provides `modelUpdate()` helper function to easily update an **ARRAY** or **OBJE
 
 ## modelUpdate
 `modelUpdate(source, model, variables)`
+
 **source** is the existing object
 
 **model** is the object with changes you would like to make
