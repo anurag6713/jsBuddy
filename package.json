@@ -1,0 +1,23 @@
+{
+  "name": "jsbuddy",
+  "version": "1.0.0",
+  "description": "Javascript immutability helper function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anurag6713/jsBuddy.git"
+  },
+  "keywords": [
+    "immutability",
+    "immutable"
+  ],
+  "author": "Anurag Shivarathri <anurag6713@gmail.com> (https://github.com/anurag6713)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anurag6713/jsBuddy/issues"
+  },
+  "homepage": "https://github.com/anurag6713/jsBuddy#readme"
+}

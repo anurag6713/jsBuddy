@@ -7,7 +7,7 @@ function traverse(source, model, variables = {}) {
     let newSource;
     if(Array.isArray(source)) {
         newSource = [...source];
-        let operations = {};
+        const operations = {};
         for(let modelKey in model) {
             if(isCommand(modelKey)) {
                 // Get function return value except for $remove because $remove must act like map with each item sent to it.
@@ -16,18 +16,18 @@ function traverse(source, model, variables = {}) {
                     newSource = input;
                 } else if(modelKey === '$push') {
                     newSource = [
-                        ...source,
-                        ...(Array.isArray(input) ? input : [])
+                        ...newSource,
+                        ...(Array.isArray(input) ? input : [input])
                     ];
                 } else if(modelKey === '$unshift') {
                     newSource = [
-                        ...(Array.isArray(input) ? input : []),
-                        ...source
+                        ...(Array.isArray(input) ? input : [input]),
+                        ...newSource
                     ];
                 } else if(modelKey === '$remove') {
-                    newSource = arrayRemove(source, input);
+                    newSource = arrayRemove(newSource, input);
                 } else if(modelKey === '$splice') {
-                    newSource = arraySplice(source, input);
+                    newSource = arraySplice(newSource, input);
                 }
             } else {
                 operations[modelKey] = model[modelKey]; // save non-command operations/keys
@@ -62,9 +62,9 @@ function traverse(source, model, variables = {}) {
             }
             newSource = tempSource;
         }
-    } else {
+    } else if(typeof source === 'object' && source !== null) {
         newSource = Object.assign({}, source);
-        let operations = {};
+        const operations = {};
         for(let modelKey in model) {
             if(isCommand(modelKey)) {
                 const input = (typeof model[modelKey] === 'function' && modelKey !== '$unset' ? model[modelKey](newSource) : model[modelKey]);
@@ -86,7 +86,7 @@ function traverse(source, model, variables = {}) {
                 } else if(modelKey === '$merge') {
                     newSource = {
                         ...newSource,
-                        ...model[modelKey]
+                        ...input
                     };
                 }
             } else {
@@ -106,7 +106,6 @@ function traverse(source, model, variables = {}) {
             } else {
                 for(let i in newSource) {
                     if(
-                        typeof newSource[i] === 'object' && !Array.isArray(newSource[i]) && newSource[i] !== null && 
                         i == modelKey || 
                         (modelKey[0] === '$' && typeof variables[modelKey] === 'function' && variables[modelKey](newSource[i], i)) || 
                         (newSource[i] && (newSource[i].id === modelKey || newSource[i]._id === modelKey))
@@ -123,6 +122,8 @@ function traverse(source, model, variables = {}) {
             }
             newSource = tempSource;
         }
+    } else {
+        newSource = model && model.$set ? model.$set : model;
     }
     return newSource;
 }

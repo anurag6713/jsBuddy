@@ -13,9 +13,8 @@
         id: '100'
     }
 
-    $remove: {       // Removes Array Item Matching object value
-        id: function(value) {   
-            retrun value === 100;
+    $remove: function(item) {   // Removes Array Item Matching object value
+            retrun item === 100;
         }
     }
 
