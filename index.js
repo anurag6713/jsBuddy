@@ -1,5 +1,5 @@
-const update = require('./src/update');
+const modelUpdate = require('./src/modelUpdate');
 
 module.exports = {
-    update
+    modelUpdate
 };
