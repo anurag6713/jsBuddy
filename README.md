@@ -5,9 +5,12 @@ Provides `modelUpdate()` helper function to easily update an **ARRAY** or **OBJE
 
 ## modelUpdate
 `modelUpdate(source, model, variables)`
-**source** is the existing object\n
-**model** is the object with changes you would like to make\n
+**source** is the existing object
+
+**model** is the object with changes you would like to make
+
 **variables** is the object which contains any variables used in the **model**
+
 
 Object Example: 
 ``` js
